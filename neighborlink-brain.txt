@@ -11,3 +11,43 @@ neighborlink-brain/
 │ └─ logger.js
 └─ config/
     └─ config.js
+{
+  "name": "neighborlink-brain",
+  "version": "1.0.0",
+  "description": "AI Brain backend for NeighborLink",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const glideWebhook = require('./routes/glideWebhook');
+
+const app = express();
+const PORT = process.env.PORT || 10000;
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use('/webhook', glideWebhook);
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', message: 'NeighborLink Brain online' });
+});
+
+app.listen(PORT, () => console.log(`NeighborLink Brain running on port ${PORT}`));
+
