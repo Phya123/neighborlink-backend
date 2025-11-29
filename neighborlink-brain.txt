@@ -1,0 +1,13 @@
+neighborlink-brain/
+│
+├─ package.json
+├─ server.js
+├─ routes/
+│ └─ glideWebhook.js
+├─ controllers/
+│ └─ brainController.js
+├─ utils/
+│ └─ xpEngine.js
+│ └─ logger.js
+└─ config/
+    └─ config.js
